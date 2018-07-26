@@ -38,5 +38,17 @@ It is also computationally faster to compute ReLU gradients than sigmoid gradien
 
 ReLU has also been found, in general, to simply perform better than sigmoid activations in many situations; its adoption has mostly been driven by empirical, rather than theoretical, benefits.
 
-## References
+### What is data normalization, and why do we need it?
+Data normalization is used to shift and rescale values (perhaps to make feature means 0 and sample variances 1, for example). It is useful because it ensures that training is invariant to feature units (feet vs. meters, for instance) and weighs features solely based on their predictive power rather than unit specifics. It also can positively impact optimization procedures by affecting the conditioning of the problem. Finally, in NNs with sigmoid units, normalization can, early on in training, ensure that activation values remain close to 0 and therefore preserve gradient flow (this insight is what led to batch normalization, which is a more advanced version of the standard data normalization setup).
+
+### Explain dimensionality reduction, where it's used, and its benefits.
+Dimensionality reduction is most frequently used to reduce the number of features (or, equivalently, the length of the feature vector) used to represent each example in a dataset. This is useful because large numbers of features leads to the curse of dimensionality, where all of the training examples are far from each other in feature space. The CoD is a problem because supervised methods all fundamentally operate on the principle that examples close to each other in feature space are likely to have similar target values. Dimensionality reduction helps us get around this problem.
+
+In practice, this is frequently done by finding a lower-dimensional manifold, whether linear or nonlinear and projecting the data onto it to get the new feature representations. This is what PCA does, for example.
+
+Dimensionality reduction can also be used simply for data compression, without any particular aim toward improving supervised method performance.
+
+(Note that DR also leads to faster computing and may allow us to plot datasets that were previously unplottable.)
+
+## Question Sources
 1. [DS and ML Interview Questions](https://towardsdatascience.com/data-science-and-machine-learning-interview-questions-3f6207cf040b)
