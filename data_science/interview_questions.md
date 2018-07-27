@@ -1,4 +1,9 @@
 # Interview Questions
+1. [General ML](#general-machine-learning)
+2. [Data Munging](#data-munging)
+3. [Specific Algorithm Descriptions](#specific-algorithm-descriptions)
+4. [Neural Networks](#neural-networks)
+
 ## General Machine Learning
 ### What is the trade-off between bias and variance?
 The bias of a supervised machine learning model corresponds to its propensity to underfit, or to fail to pick up on "signal" in the training data. Models with "high bias" tend to not be able to represent the optimal prediction function given the training data. A linear regression model, for example, can only represent linear functions; therefore any time the relationship between the x- and y-variables is not linear, this model will provide predictions that are far from the optimal ones.
@@ -63,7 +68,7 @@ From a statistical modeling standpoint, there are many parallels. In general, ma
 5. Make plots to "get a feel" for what the data look like. This frequently leads to insights that are later used in feature engineering. Relationships between variables can be plotted using SPLOMs, bar charts, etc., and are usually quite enlightening.
 6. Simple modeling may be appropriate here, but this frequently goes beyond the "exploratory" phase of the data analysis.
 
-## Specific Algorithms (Excluding NNs)
+## Specific Algorithm Descriptions
 ### Explain PCA.
 PCA is an unsupervised method typically used for dimensionality reduction. This method finds the directions of greatest variation in feature space and uses those to (frequently) more efficiently represent the input data. Mechanically, this is done by using the singular value decomposition and choosing the directions corresponding to the largest *d* singular values, where d is the number of dimensions of the resulting feature vector (this is chosen by, perhaps, a scree plot). The original feature vectors are then projected onto the subspace defined by those directions to get the new dimension-reduced features.
 
