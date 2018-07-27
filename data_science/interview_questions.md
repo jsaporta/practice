@@ -50,5 +50,36 @@ Dimensionality reduction can also be used simply for data compression, without a
 
 (Note that DR also leads to faster computing and may allow us to plot datasets that were previously unplottable.)
 
+### How do you handle missing or corrupted data in a dataset?
+1. Get it from the source.
+2. Use a method with built-in missing data handling.
+3. Drop the offending examples or fields.
+4. Use a default value.
+5. (Categorical only) add "missing" as one of the categories.
+6. Use a variant of the EM algorithm to dodge the problem.
+
+### How to do EDA?
+0. Throughout this process, be careful that your test set data remain completely separate from the model that you're training. Otherwise, they might end up in your training procedure and worsen your estimated generalization error.
+1. Try to understand the provenance of the data (where they come from and how they've changed).
+2. Format the data properly, especially dates.
+3. Check for outliers and nonsense values (plots are helpful here).
+4. Determine a strategy for missing data and the outliers and nonsense values. This is frequently related to step (1).
+5. Make plots to "get a feel" for what the data look like. This frequently leads to insights that are later used in feature engineering. Relationships between variables can be plotted using SPLOMs, bar charts, etc., and are usually quite enlightening.
+6. Simple modeling may be appropriate here, but this frequently goes beyond the "exploratory" phase of the data analysis.
+
+### How do you know which ML model you should use?
+First, make sure that the class of problem the model solves is the same as the class of problem you have. Don't try to use a "regression" algorithm for a classification problem (usually). Similarly, consider your loss function and make sure it's appropriate; perhaps L1 loss is preferable to L2 loss if outlier predictions shouldn't be penalized extra-hard, for instance. Use training and validation loss curves to monitor the training and detect over- and underfitting. In the underfitting case, use a model with greater capacity; when overfitting, use regularization to shrink the model. Use validation error or cross-validation to choose hyperparameter values; in extreme cases, the "hyperparameter" chosen may include the "model" itself. When possible, take advantage of additional information in the structure of the problem: a convolutional layer is frequently a good idea when doing image classification, for instance, because it takes advantage of the structure of image data.
+
+From a statistical modeling standpoint, there are many parallels. In general, make sure that the assumptions made in the model are correct, or at least not clearly false unless you have a good reason to use them.
+
+### Why use convolutions for images rather than just FC layers?
+1. Less parameters -> less variance.
+2. The modeling assumption encoded in the convolution operation, that pixels closer together should be more related than those far apart, is intuitively sensible for image data.
+3. Because of (1) and (2), we expect that reducing the parameters in this way will not have a large negative effect on the algorithm's performance. That is, we're getting less bias AND less variance!
+4. Convolutional layers add *shift-invariance* to the algorithm. A picture of a cat is just as much a picture of a cat if the cat moves two pixels to the left; this shift should have no effect on the prediction made by the algorithm.
+
+### What makes CNNs translation invariant?
+In convolutional (pooling) layers, the same kernels (pooling operations) are applied to each region of the image, with the same weights each time (not applicable to pooling layers). This means that insofar as the prediction is concerned, "all regions of the image are created equal". A cat right here will be detected just as well as a cat over there.
+
 ## Question Sources
 1. [DS and ML Interview Questions](https://towardsdatascience.com/data-science-and-machine-learning-interview-questions-3f6207cf040b)
