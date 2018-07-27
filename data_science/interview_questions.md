@@ -1,5 +1,5 @@
 # Interview Questions
-## Machine Learning
+## General Machine Learning
 ### What is the trade-off between bias and variance?
 The bias of a supervised machine learning model corresponds to its propensity to underfit, or to fail to pick up on "signal" in the training data. Models with "high bias" tend to not be able to represent the optimal prediction function given the training data. A linear regression model, for example, can only represent linear functions; therefore any time the relationship between the x- and y-variables is not linear, this model will provide predictions that are far from the optimal ones.
 
@@ -28,16 +28,6 @@ Regularization is usually used to restrict the number of possible functions a mo
 - L2 regularization, which encourages smaller model parameters in general.
 - Dropout regularization in NNs, which adds noise to the training process and requires successive NN layers to be robust to failures in previous layers.
 
-### Explain PCA.
-PCA is an unsupervised method typically used for dimensionality reduction. This method finds the directions of greatest variation in feature space and uses those to (frequently) more efficiently represent the input data. Mechanically, this is done by using the singular value decomposition and choosing the directions corresponding to the largest *d* singular values, where d is the number of dimensions of the resulting feature vector (this is chosen by, perhaps, a scree plot). The original feature vectors are then projected onto the subspace defined by those directions to get the new dimension-reduced features.
-
-### Why is ReLU better and more often used than the sigmoid activation function in NNs?
-The sigmoid activation function *saturates*, which means that gradient flow can be interrupted during backpropagation, leading to slow training. This is a result of the tails of the sigmoid function, which have small derivatives, and how that affects derivatives further back through multiplication thanks to the chain rule.
-
-It is also computationally faster to compute ReLU gradients than sigmoid gradients, leading to more speed benefits.
-
-ReLU has also been found, in general, to simply perform better than sigmoid activations in many situations; its adoption has mostly been driven by empirical, rather than theoretical, benefits.
-
 ### What is data normalization, and why do we need it?
 Data normalization is used to shift and rescale values (perhaps to make feature means 0 and sample variances 1, for example). It is useful because it ensures that training is invariant to feature units (feet vs. meters, for instance) and weighs features solely based on their predictive power rather than unit specifics. It also can positively impact optimization procedures by affecting the conditioning of the problem. Finally, in NNs with sigmoid units, normalization can, early on in training, ensure that activation values remain close to 0 and therefore preserve gradient flow (this insight is what led to batch normalization, which is a more advanced version of the standard data normalization setup).
 
@@ -50,6 +40,12 @@ Dimensionality reduction can also be used simply for data compression, without a
 
 (Note that DR also leads to faster computing and may allow us to plot datasets that were previously unplottable.)
 
+### How do you know which ML model you should use?
+First, make sure that the class of problem the model solves is the same as the class of problem you have. Don't try to use a "regression" algorithm for a classification problem (usually). Similarly, consider your loss function and make sure it's appropriate; perhaps L1 loss is preferable to L2 loss if outlier predictions shouldn't be penalized extra-hard, for instance. Use training and validation loss curves to monitor the training and detect over- and underfitting. In the underfitting case, use a model with greater capacity; when overfitting, use regularization to shrink the model. Use validation error or cross-validation to choose hyperparameter values; in extreme cases, the "hyperparameter" chosen may include the "model" itself. When possible, take advantage of additional information in the structure of the problem: a convolutional layer is frequently a good idea when doing image classification, for instance, because it takes advantage of the structure of image data.
+
+From a statistical modeling standpoint, there are many parallels. In general, make sure that the assumptions made in the model are correct, or at least not clearly false unless you have a good reason to use them.
+
+## Data Munging
 ### How do you handle missing or corrupted data in a dataset?
 1. Get it from the source.
 2. Use a method with built-in missing data handling.
@@ -67,10 +63,17 @@ Dimensionality reduction can also be used simply for data compression, without a
 5. Make plots to "get a feel" for what the data look like. This frequently leads to insights that are later used in feature engineering. Relationships between variables can be plotted using SPLOMs, bar charts, etc., and are usually quite enlightening.
 6. Simple modeling may be appropriate here, but this frequently goes beyond the "exploratory" phase of the data analysis.
 
-### How do you know which ML model you should use?
-First, make sure that the class of problem the model solves is the same as the class of problem you have. Don't try to use a "regression" algorithm for a classification problem (usually). Similarly, consider your loss function and make sure it's appropriate; perhaps L1 loss is preferable to L2 loss if outlier predictions shouldn't be penalized extra-hard, for instance. Use training and validation loss curves to monitor the training and detect over- and underfitting. In the underfitting case, use a model with greater capacity; when overfitting, use regularization to shrink the model. Use validation error or cross-validation to choose hyperparameter values; in extreme cases, the "hyperparameter" chosen may include the "model" itself. When possible, take advantage of additional information in the structure of the problem: a convolutional layer is frequently a good idea when doing image classification, for instance, because it takes advantage of the structure of image data.
+## Specific Algorithms (Excluding NNs)
+### Explain PCA.
+PCA is an unsupervised method typically used for dimensionality reduction. This method finds the directions of greatest variation in feature space and uses those to (frequently) more efficiently represent the input data. Mechanically, this is done by using the singular value decomposition and choosing the directions corresponding to the largest *d* singular values, where d is the number of dimensions of the resulting feature vector (this is chosen by, perhaps, a scree plot). The original feature vectors are then projected onto the subspace defined by those directions to get the new dimension-reduced features.
 
-From a statistical modeling standpoint, there are many parallels. In general, make sure that the assumptions made in the model are correct, or at least not clearly false unless you have a good reason to use them.
+## Neural Networks
+### Why is ReLU better and more often used than the sigmoid activation function in NNs?
+The sigmoid activation function *saturates*, which means that gradient flow can be interrupted during backpropagation, leading to slow training. This is a result of the tails of the sigmoid function, which have small derivatives, and how that affects derivatives further back through multiplication thanks to the chain rule.
+
+It is also computationally faster to compute ReLU gradients than sigmoid gradients, leading to more speed benefits.
+
+ReLU has also been found, in general, to simply perform better than sigmoid activations in many situations; its adoption has mostly been driven by empirical, rather than theoretical, benefits.
 
 ### Why use convolutions for images rather than just FC layers?
 1. Less parameters -> less variance.
@@ -81,5 +84,6 @@ From a statistical modeling standpoint, there are many parallels. In general, ma
 ### What makes CNNs translation invariant?
 In convolutional (pooling) layers, the same kernels (pooling operations) are applied to each region of the image, with the same weights each time (not applicable to pooling layers). This means that insofar as the prediction is concerned, "all regions of the image are created equal". A cat right here will be detected just as well as a cat over there.
 
+---
 ## Question Sources
 1. [DS and ML Interview Questions](https://towardsdatascience.com/data-science-and-machine-learning-interview-questions-3f6207cf040b)
