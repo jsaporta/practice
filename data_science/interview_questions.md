@@ -89,6 +89,19 @@ ReLU has also been found, in general, to simply perform better than sigmoid acti
 ### What makes CNNs translation invariant?
 In convolutional (pooling) layers, the same kernels (pooling operations) are applied to each region of the image, with the same weights each time (not applicable to pooling layers). This means that insofar as the prediction is concerned, "all regions of the image are created equal". A cat right here will be detected just as well as a cat over there.
 
+### Why do we have max pooling in classification CNNs?
+The intuition here is that because the *exact location* of a particular "feature" (at whatever level of the feature hierarchy) in an image doesn't matter, we can reduce the number of parameters in the model by "blurring" the image a bit with max pooling. If, after the pooling operation is applied, there is still a "lot of signal" coming from a particular region with respect to a particular feature, we know that that feature occurs somewhere in that region, which is usually good enough.
+
+### Why do segmentation CNNs typically have an encoder-decoder style/structure?
+(Note: I have no clue for this one personally, so my answer is mostly me trying to expound on the short answer given in the first reference, where the question also came from.)
+
+Basically, segmentation consists of two parts. First, we need to be able to identify which objects are in the image, such as car, pedestrian, light post, etc. This list of objects that are in the image is the "encoded" form of the image. From there, we need to "decode" this list, by taking learned ideas about what each of these things look like and matching them up with groups of pixels in the image. This is what leads to different groups of pixels being labeled with different categories.
+
+### What is the significance of residual networks (ResNets)?
+(Note: I can answer this question a bit better than the previous one, but still not as good as most of the questions in this list. It comes from the same source.)
+
+Residual connections allow for deeper networks by helping to preserve gradient flow during backpropagation - thus allowing those networks to be effectively learned. Deeper networks allow for more sophisticated feature hierarchies. They can also be viewed as replicating the process of ensembling shallower models.
+
 ---
 ## Question Sources
 1. [DS and ML Interview Questions](https://towardsdatascience.com/data-science-and-machine-learning-interview-questions-3f6207cf040b)
