@@ -102,6 +102,26 @@ Basically, segmentation consists of two parts. First, we need to be able to iden
 
 Residual connections allow for deeper networks by helping to preserve gradient flow during backpropagation - thus allowing those networks to be effectively learned. Deeper networks allow for more sophisticated feature hierarchies. They can also be viewed as replicating the process of ensembling shallower models.
 
+## Time Series
+### How to predict when/whether an event will occur?
+1. Model the time-to-event using an exponential, gamma, or Weibull distribution.
+2. Use a time series model where the random variables are Bernoulli distributed, probably with covariate information.
+3. Encode the event as a state, perhaps in an HMM, and predict when a switch to that state will occur.
+4. Encode the event as a special symbol to be output by an RNN.
+
+### How to predict the value of a time series at future points in time, such as a stock's price?
+1. Model the returns as normally distributed and use a standard time series model.
+2. Use an RNN with the price or returns as the output/target variable.
+
+### How to identify patterns in a time series?
+1. Encode whether you are "in" a particular region or "out" of it as a state in, say, and HMM. Predicted state information then helps you determine patterns.
+2. Window the series and extract features, then use clustering or dimensionality reduction.
+
+### Name some special data cleaning and EDA requirements for time series data.
+1. Time series frequently have missing values or are not sampled uniformly, which breaks many algorithms. Raw data need to be converted into uniformly sampled time series.
+2. Similarly, events only containing time stamps are almost guaranteed not to meet the algorithms' requirements. In this case, it is particularly important to format the data in terms of "windows" of time.
+3. Decompose the series into its various components. First try to remove the trend and seasonality from the series; predicting only the residuals will be easier.
 ---
 ## Question Sources
 1. [DS and ML Interview Questions](https://towardsdatascience.com/data-science-and-machine-learning-interview-questions-3f6207cf040b)
+2. [The Data Science Handbook](https://www.amazon.com/Data-Science-Handbook-Field-Cady/dp/1119092949)
