@@ -3,6 +3,7 @@
 ## Data Science
 1. [Iris classification](data_science/iris_classification.ipynb) with logistic regression, using PCA for dimensionality reduction.
 2. [Iris clustering](data_science/iris_clustering.ipynb) using PCA and k-means.
+3. [Real-time data visualization](data_science/rt-dataviz) example.
 
 ## Interviews
 1. [Actual interview questions](interviews/actual_interview_questions.ipynb) that I have had to answer, organized by role.
