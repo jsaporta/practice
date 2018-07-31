@@ -6,5 +6,4 @@
 3. [Real-time data visualization](data_science/rt-dataviz) example.
 
 ## Interviews
-1. [Actual interview questions](interviews/actual_interview_questions.ipynb) that I have had to answer, organized by role.
-2. [Practice data science interview questions](interviews/practice_ds_interview_questions.md) that I have encountered on the internet, in books, etc.
+1. [Practice data science interview questions](interviews/practice_ds_interview_questions.md) that I have encountered on the internet, in books, etc.
