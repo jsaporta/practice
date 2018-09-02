@@ -13,16 +13,16 @@ ___
 
 ### Phone Screen
 1. How would you go about predicting when an event will occur?
-2. Given an array with $n$ unordered items, how would you find the $b$ of them closest to a given number $x$?
+2. Given an array with n unordered items, how would you find the b of them closest to a given number x?
 
 ### Second Round
 1. Write a program that prints out a string representation of a provided integer less than 100,000,000.
 2. Write a program that rotates the provided matrix (a list of lists) 90 degrees clockwise.
 3. (Standard simple problem with Bayes rule.)
 4. Given a time series of measurements A and B, how can you assess whether there is a causal connection from A to B?
-5. If $X$ and $Y$ are uncorrelated, and so are $X$ and $Z$, does that mean that $Y$ and $Z$ are uncorrelated too?
+5. If X and Y are uncorrelated, and so are X and Z, does that mean that Y and Z are uncorrelated too?
 6. What is your favorite ML algorithm, and why?
-7. Given a set of 2D points and an input value, calculate the $K$ nearest neighbors to the input value within that set.
+7. Given a set of 2D points and an input value, calculate the K nearest neighbors to the input value within that set.
 8. Given an array of integers and a particular value, find all sets of three integers in that array that sum to that value. Repeats are not allowed.
 ___
 ## Company 2
